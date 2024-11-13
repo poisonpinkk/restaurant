@@ -27,7 +27,11 @@ const routes: Routes = [
   {
     path: 'empresa',
     loadChildren: () => import('./pages/empresa/empresa.module').then( m => m.EmpresaPageModule)
+  },  {
+    path: 'forgotpassword',
+    loadChildren: () => import('./pages/forgotpassword/forgotpassword.module').then( m => m.ForgotpasswordPageModule)
   },
+
 ];
 
 @NgModule({
