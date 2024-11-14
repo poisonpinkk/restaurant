@@ -66,3 +66,16 @@
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
+.mensaje-exito {
+  color: #2c5282;
+  font-weight: bold;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.mensaje-error {
+  color: #ff0000;
+  font-weight: bold;
+  margin-top: 20px;
+  text-align: center;
+}
