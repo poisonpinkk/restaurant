@@ -16,7 +16,7 @@ export class LoginPage {
   constructor(
     private authService: AuthService,
     private router: Router
-  ) {}
+  ) { }
 
   login() {
     this.authService.login(this.email, this.password)
