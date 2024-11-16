@@ -1,13 +1,58 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>empresa</ion-title>
+    <ion-title>Reserva de Evento</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">empresa</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <!-- Formulario para la reserva -->
+  <form [formGroup]="empresaForm" (ngSubmit)="reservar()">
+    <!-- Campo para seleccionar la fecha -->
+    <ion-item>
+      <ion-label position="floating">Día</ion-label>
+      <ion-datetime
+        formControlName="dia"
+        [min]="today"
+        display-format="DD MMM YYYY"
+      ></ion-datetime>
+    </ion-item>
+
+    <!-- Campo para seleccionar la hora desde -->
+    <ion-item>
+      <ion-label>Hora Desde</ion-label>
+      <ion-select formControlName="horaDesde">
+        <ion-select-option *ngFor="let hora of horas">{{ hora }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- Campo para seleccionar la hora hasta -->
+    <ion-item>
+      <ion-label>Hora Hasta</ion-label>
+      <ion-select formControlName="horaHasta">
+        <ion-select-option *ngFor="let hora of horas">{{ hora }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- Campo para la cantidad de personas -->
+    <ion-item>
+      <ion-label position="floating">Cantidad de personas</ion-label>
+      <ion-input type="number" formControlName="cantidad" min="1"></ion-input>
+    </ion-item>
+
+    <!-- Campo para seleccionar el tipo de comida -->
+    <ion-item>
+      <ion-label>Tipo de Comida</ion-label>
+      <ion-select formControlName="tipoComida">
+        <ion-select-option value="Buffet">Buffet</ion-select-option>
+        <ion-select-option value="A la carta">A la carta</ion-select-option>
+        <ion-select-option value="Cóctel">Cóctel</ion-select-option>
+        <ion-select-option value="Vegano">Vegano</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- Botón para reservar -->
+    <ion-button expand="block" type="submit" [disabled]="empresaForm.invalid">
+      Reservar
+    </ion-button>
+  </form>
 </ion-content>
