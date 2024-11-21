@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController, AlertController, LoadingController } from '@ionic/angular';
+import { FirestoreService } from 'src/app/firebase/firestore.service';
+import { AuthService } from 'src/app/firebase/auth.service';
+import { Reservation } from 'src/app/models/reservation.models';
 
 @Component({
   selector: 'app-cliente',
@@ -20,7 +23,9 @@ export class ClientePage implements OnInit {
     private fb: FormBuilder,
     private navCtrl: NavController,
     private alertController: AlertController,
-    private loadingController: LoadingController
+    private loadingController: LoadingController,
+    private firestoreService: FirestoreService,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -33,31 +38,46 @@ export class ClientePage implements OnInit {
 
   async reservar() {
     if (this.reservaForm.valid) {
+      const currentUser = this.authService.getCurrentUser();
+      if (!currentUser) {
+        await this.mostrarAlerta('Error', 'Debes iniciar sesión para reservar.');
+        return;
+      }
+
       const loading = await this.loadingController.create({
         message: 'Cargando...',
-        spinner: 'crescent'
+        spinner: 'crescent',
       });
 
       await loading.present();
 
-      setTimeout(async () => {
+      // Crear objeto de reserva
+      const reservation: Reservation = {
+        uid: currentUser.uid,
+        rol: 'cliente',
+        fecha: this.reservaForm.value.fecha,
+        hora: this.reservaForm.value.hora,
+        cantidad: this.reservaForm.value.cantidad,
+      };
+
+      try {
+        await this.firestoreService.createReservation(reservation);
         await loading.dismiss();
-        this.numeroReserva = Math.floor(Math.random() * 1000000);
-        await this.mostrarAlerta();
-      }, 2000);
+        await this.mostrarAlerta('Reserva Exitosa', 'Tu reserva se ha guardado correctamente.');
+        this.navCtrl.navigateBack('/home');
+      } catch (error) {
+        await loading.dismiss();
+        console.error('Error al guardar la reserva:', error);
+        await this.mostrarAlerta('Error', 'Hubo un error al guardar la reserva.');
+      }
     }
   }
 
-  async mostrarAlerta() {
+  async mostrarAlerta(header: string, message: string) {
     const alert = await this.alertController.create({
-      header: 'Reserva Exitosa',
-      message: `Su reserva se ha realizado con éxito, su número de reserva es: ${this.numeroReserva}`,
-      buttons: [
-        {
-          text: 'OK',
-          handler: () => this.navCtrl.navigateBack('/home')
-        }
-      ]
+      header,
+      message,
+      buttons: ['OK'],
     });
 
     await alert.present();

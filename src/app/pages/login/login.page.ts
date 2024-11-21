@@ -21,7 +21,9 @@ export class LoginPage {
   login() {
     this.authService.login(this.email, this.password)
       .then(() => {
-        const user = this.authService.getCurrentUser();
+        let user = this.authService.getCurrentUser();
+        console.log(user.rol);
+        console.log('Usuario autenticado:', user);
         if (user) {
           // Redirigir según el rol del usuario
           if (user.rol === 'cliente') {
