@@ -13,11 +13,8 @@ import { Reservation } from 'src/app/models/reservation.models';
 export class ClientePage implements OnInit {
   reservaForm!: FormGroup;
   today: string = new Date().toISOString().split('T')[0];
-  numeroReserva!: number;
 
-  horas: string[] = [
-    '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00'
-  ];
+  horas: string[] = ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00'];
 
   constructor(
     private fb: FormBuilder,
@@ -32,15 +29,16 @@ export class ClientePage implements OnInit {
     this.reservaForm = this.fb.group({
       fecha: ['', Validators.required],
       hora: ['', Validators.required],
-      cantidad: ['', [Validators.required, Validators.min(1)]]
+      cantidad: ['', [Validators.required, Validators.min(1)]],
     });
   }
 
   async reservar() {
     if (this.reservaForm.valid) {
       const currentUser = this.authService.getCurrentUser();
-      if (!currentUser) {
-        await this.mostrarAlerta('Error', 'Debes iniciar sesión para reservar.');
+      if (!currentUser || !currentUser.rol) {
+        await this.mostrarAlerta('Error', 'Hubo un problema al obtener los datos del usuario. Por favor, vuelve a iniciar sesión.');
+        this.navCtrl.navigateRoot('/login');
         return;
       }
 
@@ -51,7 +49,6 @@ export class ClientePage implements OnInit {
 
       await loading.present();
 
-      // Crear objeto de reserva
       const reservation: Reservation = {
         uid: currentUser.uid,
         rol: 'cliente',
@@ -64,7 +61,8 @@ export class ClientePage implements OnInit {
         await this.firestoreService.createReservation(reservation);
         await loading.dismiss();
         await this.mostrarAlerta('Reserva Exitosa', 'Tu reserva se ha guardado correctamente.');
-        this.navCtrl.navigateBack('/home');
+        await this.authService.logout();
+        this.navCtrl.navigateRoot('/login');
       } catch (error) {
         await loading.dismiss();
         console.error('Error al guardar la reserva:', error);
@@ -79,7 +77,6 @@ export class ClientePage implements OnInit {
       message,
       buttons: ['OK'],
     });
-
     await alert.present();
   }
 }

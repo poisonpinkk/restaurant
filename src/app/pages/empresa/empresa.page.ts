@@ -40,19 +40,19 @@ export class EmpresaPage implements OnInit {
   async reservar() {
     if (this.empresaForm.valid) {
       const currentUser = this.authService.getCurrentUser();
-      if (!currentUser) {
-        await this.mostrarAlerta('Error', 'Debes iniciar sesión para reservar.');
+      if (!currentUser || !currentUser.rol) {
+        await this.mostrarAlerta('Error', 'Hubo un problema al obtener los datos del usuario. Por favor, vuelve a iniciar sesión.');
+        this.navCtrl.navigateRoot('/login');
         return;
       }
-
+  
       const loading = await this.loadingController.create({
         message: 'Cargando...',
-        spinner: 'crescent'
+        spinner: 'crescent',
       });
-
+  
       await loading.present();
-
-      // Crear objeto de reserva
+  
       const reservation: Reservation = {
         uid: currentUser.uid,
         rol: 'empresa',
@@ -60,15 +60,15 @@ export class EmpresaPage implements OnInit {
         horaDesde: this.empresaForm.value.horaDesde,
         horaHasta: this.empresaForm.value.horaHasta,
         cantidad: this.empresaForm.value.cantidad,
-        detalles: this.empresaForm.value.tipoComida
+        detalles: this.empresaForm.value.tipoComida,
       };
-
+  
       try {
-        // Guardar reserva en Firestore
         await this.firestoreService.createReservation(reservation);
         await loading.dismiss();
         await this.mostrarAlerta('Reserva Exitosa', 'Tu reserva se ha guardado correctamente.');
-        this.navCtrl.navigateBack('/home');
+        await this.authService.logout();
+        this.navCtrl.navigateRoot('/login');
       } catch (error) {
         await loading.dismiss();
         console.error('Error al guardar la reserva:', error);

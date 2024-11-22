@@ -1,62 +1,61 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut, User } from '@angular/fire/auth';  // Importar la función específica
+import { Auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from '@angular/fire/auth';
 import { FirestoreService } from './firestore.service';
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
   private authStateSubject = new BehaviorSubject<any>(null);
   authState$ = this.authStateSubject.asObservable();
 
   constructor(private afAuth: Auth, private firestoreService: FirestoreService) {
-
     onAuthStateChanged(this.afAuth, async (user) => {
       if (user) {
-        // Si el usuario está autenticado, obtener datos adicionales desde Firestore
-        const userData = await this.firestoreService.getUser(user.uid);
-        const fullUserData = {
-          uid: user.uid,
-          email: user.email,
-          ...userData,  // Combinar los datos de autenticación con los datos adicionales
-        };
-        this.authStateSubject.next(fullUserData);  // Emitir todos los datos
+        try {
+          const userData = await this.firestoreService.getUser(user.uid);
+          if (userData) {
+            const fullUserData = {
+              uid: user.uid,
+              email: user.email,
+              ...userData,
+            };
+            this.authStateSubject.next(fullUserData);
+          } else {
+            console.error('Error: No se encontraron datos adicionales para el usuario.');
+            this.authStateSubject.next(null);
+          }
+        } catch (error) {
+          console.error('Error al obtener datos del usuario desde Firestore:', error);
+          this.authStateSubject.next(null);
+        }
       } else {
-        // Si no hay usuario autenticado, emitir null
         this.authStateSubject.next(null);
       }
     });
   }
 
-  // Método para registrar un nuevo usuario con email y password
   register(email: string, password: string) {
     return createUserWithEmailAndPassword(this.afAuth, email, password);
   }
 
-  // Método para iniciar sesión con email y password
   login(email: string, password: string) {
     return signInWithEmailAndPassword(this.afAuth, email, password);
   }
 
-  // Método para cerrar sesión
   logout() {
     return signOut(this.afAuth).then(() => {
-      this.authStateSubject.next(null);  // Emitir null cuando el usuario cierre sesión
+      this.authStateSubject.next(null);
     });
   }
 
-  // Método para obtener el estado de autenticación actual (no observable, sino el valor actual)
   getCurrentUser() {
     return this.authStateSubject.value;
   }
 
-
-  GenerarError(tipo: any){
+  GenerarError(tipo: any) {
     let error: string = '';
-    // Verificar el código del error para personalizar el mensaje
     switch (tipo.code) {
       case 'auth/email-already-in-use':
         error = 'El correo electrónico ya está en uso';
@@ -79,9 +78,6 @@ export class AuthService {
       default:
         error = 'Error: ' + tipo.message;
     }
-
     return error;
   }
-
-
 }
