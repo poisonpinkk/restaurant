@@ -4,7 +4,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="form">
   <ion-item>
     <ion-label position="floating">Correo Electrónico</ion-label>
     <ion-input [(ngModel)]="email" type="email"></ion-input>
@@ -18,7 +18,7 @@
     {{ errorMessage }}
   </div>
 
-  <ion-button expand="full" (click)="login()">Iniciar sesión</ion-button>
+  <ion-button class="boton1" expand="full" (click)="login()">Iniciar sesión</ion-button>
 
-  <ion-button expand="full" color="light" routerLink="/registrar">¿No tienes cuenta? Regístrate</ion-button>
+  <ion-button class="boton2" expand="full" color="light" routerLink="/registrar">¿No tienes cuenta? Regístrate</ion-button>
 </ion-content>
