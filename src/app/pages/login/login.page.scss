@@ -1,76 +1,38 @@
 ion-header {
-  --background: #fff3eb;
+  background-color: #820000; /* Color de fondo del encabezado */
 }
 
 ion-content {
   --background: #fff3eb; /* color cream */
   color: #820000;        /* Texto rojo oscuro */
 
- ion-label {
-    color: #820000;
+  ion-label {
+    color: #ffffff; /* Etiquetas en blanco */
   }
 
+  /* Botón de Iniciar sesión con el rojo deseado */
+  ion-button.boton1 {
+    --background: #820000; /* Fondo del botón rojo */
+    --color: #fff3eb; /* Texto en blanco suave */
+    --border-radius: 5px; /* Opcional: para bordes redondeados */
+  }
 
-  ion-button .boton1 {
-    background-color: #b40000;
+  /* Estilo para el botón secundario */
+  ion-button.boton2 {
+    --background: #fff3eb; /* Fondo suave del botón secundario */
+    --color: #820000; /* Texto en rojo */
+  }
+
+  /* Estilo para el mensaje de error */
+  .error-message {
+    color: #820000; /* Rojo oscuro para el mensaje de error */
+    font-size: 14px; /* Ajusta el tamaño del texto */
+    font-weight: bold; /* Hacer que el mensaje de error sea más destacado */
+    margin-top: 10px; /* Espaciado superior */
+    text-align: center; /* Alinea el texto al centro (opcional) */
   }
 }
 
-// .form {
-//   background-color: #fff3eb; /* Fondo blanco semitransparente para el formulario */
-//   padding: 20px;
-//   border-radius: 10px;
-//   color: #820000;
-//   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Sombra sutil para el formulario */
-// }
-
-// .field {
-//   display: flex;
-//   align-items: center;
-//   background-color: #f7fafc; /* Fondo claro para los campos de entrada */
-//   padding: 10px;
-//   border-radius: 8px;
-//   margin-bottom: 15px;
-// }
-
-// .input-field {
-//   color: #2d3748; /* Color de texto gris oscuro para una lectura cómoda */
-//   background: transparent;
-//   border: none;
-//   outline: none;
-//   width: 100%;
-// }
-
-// .button1, .button2, .button3 {
-//   background-color: #122e5d; /* Azul intermedio para los botones */
-//   color: #ffffff;
-//   border: none;
-//   padding: 10px;
-//   border-radius: 5px;
-//   cursor: pointer;
-//   transition: background-color 0.3s ease;
-// }
-
-// .button1:hover, .button2:hover, .button3:hover {
-//   background-color: #2c5282; /* Color más oscuro en hover */
-// }
-
-// .register-text p {
-//   text-align: center;
-//   color: #ffffff;
-//   margin-top: 20px;
-// }
-
-// .register-link {
-//   color: #90cdf4; /* Azul claro para el enlace de registro */
-//   text-decoration: underline;
-//   cursor: pointer;
-// }
-
-// .error-message {
-//   color: red;
-//   text-align: center;
-//   margin-top: 20px;
-// }
-
-
+ion-toolbar {
+  --background: #820000; /* Barra de herramientas con el mismo color rojo */
+}

@@ -5,6 +5,7 @@ import { FirestoreService } from 'src/app/firebase/firestore.service';
 import { User } from 'src/app/models/user.models';
 import { IonicModule } from '@ionic/angular';
 
+
 @Component({
   selector: 'app-register',
   templateUrl: './registrar.page.html',
@@ -25,6 +26,7 @@ export class RegistrarPage implements OnInit {
   mensajeError: string = '';
 
   password: string = '';
+
 
   constructor(
     private authService: AuthService,

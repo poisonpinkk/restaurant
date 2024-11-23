@@ -2,7 +2,9 @@
 ion-content {
  --background: #fff3eb;
 }
-
+ion-toolbar {
+  --background: #820000; /* Barra de herramientas con el mismo color rojo */
+}
 .form-container {
   display: flex;
   justify-content: center;
@@ -102,4 +104,10 @@ ion-content {
   border: none;
   border-radius: 8px;
   margin-top: 10px;
+}
+.titulo{
+  text-align: center;  /* Centra el texto */
+  font-size: 24px;      /* Tamaño de la fuente */
+  font-weight: bold;    /* Negrita */
+  color: #820000;       /* Color del texto (puedes cambiarlo) */
 }

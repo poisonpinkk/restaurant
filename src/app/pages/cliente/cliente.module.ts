@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { ClientePageRoutingModule } from './cliente-routing.module';
 
 import { ClientePage } from './cliente.page';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { ClientePage } from './cliente.page';
     FormsModule,
     IonicModule,
     ClientePageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   declarations: [ClientePage]
 })

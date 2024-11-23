@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { EmpresaPageRoutingModule } from './empresa-routing.module';
 
 import { EmpresaPage } from './empresa.page';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { EmpresaPage } from './empresa.page';
     FormsModule,
     IonicModule,
     EmpresaPageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   declarations: [EmpresaPage]
 })

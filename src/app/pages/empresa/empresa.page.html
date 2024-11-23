@@ -5,11 +5,13 @@
 </ion-header>
 
 <ion-content>
+  <app-header></app-header>
   <!-- Formulario para la reserva -->
   <form [formGroup]="empresaForm" (ngSubmit)="reservar()">
     <!-- Campo para seleccionar la fecha -->
     <ion-item>
       <ion-label position="floating">Día</ion-label>
+      <br><br>
       <ion-datetime
         formControlName="dia"
         [min]="today"
@@ -51,8 +53,10 @@
     </ion-item>
 
     <!-- Botón para reservar -->
-    <ion-button expand="block" type="submit" [disabled]="empresaForm.invalid">
+    <ion-button expand="block" type="submit" [disabled]="empresaForm.invalid" style="--background: #820000; --color: white;">
       Reservar
     </ion-button>
+
   </form>
+  <app-footer></app-footer>
 </ion-content>
