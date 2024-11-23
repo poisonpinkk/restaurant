@@ -1,9 +1,9 @@
 <div class="header" [ngClass]="{'iniciando': usuario !== '' }">
-  <h1>El gula <img src="assets/img/gato.png"></h1>
+  <img src="assets/img/logo-del-tano.png">
 
-  <ng-container *ngIf="usuario === ''">
+  <!-- <ng-container *ngIf="usuario === ''">
     <p>Inicie sesión primero</p>
-  </ng-container>
+  </ng-container> -->
 
   <ng-container *ngIf="usuario">
     <h1>Bienvenido {{usuario}}</h1>

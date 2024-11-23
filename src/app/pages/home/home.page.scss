@@ -1,6 +1,6 @@
 .home-content {
-  --background: #3a3a3a; // Fondo gris oscuro
-  color: #f0f4f8; // Texto claro
+  --background: #fff3eb; // Fondo crema
+  color: #820000; // Texto rojo oscuro
 
   .home-container {
     display: flex;
@@ -13,12 +13,12 @@
 
     .home-title {
       font-size: 2rem;
-      color: #f0f4f8;
+      color: #820000;
       margin-bottom: 20px;
     }
 
     .login-button {
-      background-color: #2c5282; // Azul oscuro
+      background-color: #b40000; // rojo
       color: #f0f4f8; // Texto claro
       padding: 15px 30px;
       font-size: 1.2rem;
