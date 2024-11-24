@@ -1,5 +1,42 @@
 ion-footer {
-  position: absolute;
+  position: relative; /* Evita superposiciones */
   bottom: 0;
   width: 100%;
+  background-color: #fff3eb; /* Fondo en tono pastel */
+  color: #820000; /* Texto e íconos en rojo oscuro */
+  text-align: center;
+  padding: 12px 16px;
+  box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1); /* Sombra ligera para separación */
+}
+
+ion-toolbar {
+  --background: transparent; /* Fondo transparente para el toolbar */
+  display: flex;
+  justify-content: space-between; /* Espaciado entre los botones */
+}
+
+ion-button {
+  --background: transparent; /* Fondo transparente para los botones */
+  --color: #cb0606; /* Texto e íconos en rojo oscuro */
+  font-weight: bold; /* Negrita para resaltar */
+  font-size: 16px; /* Tamaño de fuente */
+  text-transform: uppercase; /* Texto en mayúsculas */
+  padding: 8px 12px;
+  transition: color 0.3s ease, transform 0.2s ease; /* Transiciones suaves */
+}
+
+ion-button:hover {
+  --color: #b71c1c; /* Rojo más oscuro al pasar el cursor */
+  transform: translateY(-2px); /* Ligera elevación */
+}
+
+ion-icon {
+  margin-right: 5px; /* Espaciado entre el ícono y el texto */
+  font-size: 18px; /* Tamaño del ícono */
+  color: #820000; /* Rojo oscuro para el ícono */
+  transition: color 0.3s ease; /* Transición suave */
+}
+
+ion-button:hover ion-icon {
+  color: #b71c1c; /* Ícono más oscuro al pasar el cursor */
 }

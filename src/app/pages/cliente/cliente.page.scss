@@ -1,41 +1,38 @@
 ion-content {
-    --padding: 16px;
+  --padding: 16px;
+  padding-bottom: 60px; /* Espacio adicional para el footer */
 }
 
-ion-title{
-  color:#f0f4f8;
-}
-
-.boton{
-  background-color: #b40000;
+ion-title {
   color: #f0f4f8;
-  border-radius: 12px;
-  margin-top: 20px;
 }
-.titulo{
-  text-align: center;  /* Centra el texto */
-  font-size: 24px;      /* Tamaño de la fuente */
-  font-weight: bold;    /* Negrita */
-  color: #820000;       /* Color del texto (puedes cambiarlo) */
+
+.titulo {
+  text-align: center; /* Centra el texto */
+  font-size: 24px; /* Tamaño de la fuente */
+  font-weight: bold; /* Negrita */
+  color: #820000; /* Color del texto */
 }
+
 .boton {
-  --background: #820000; /* Fondo del botón con el color rojo */
-  --color: #fff3eb;      /* Color del texto en blanco */
-  --border-radius: 5px;  /* Bordes redondeados */
-  --padding-start: 16px; /* Espaciado interno desde la izquierda */
-  --padding-end: 16px;   /* Espaciado interno desde la derecha */
-  font-size: 16px;        /* Tamaño de la fuente */
-  font-weight: bold;      /* Negrita */
+  --background: #820000; /* Fondo del botón con rojo */
+  --color: #fff3eb; /* Texto en blanco */
+  --border-radius: 5px; /* Bordes redondeados */
+  --padding-start: 16px; /* Espaciado interno */
+  --padding-end: 16px;
+  font-size: 16px; /* Tamaño de la fuente */
+  font-weight: bold; /* Negrita */
 }
 
 .boton:disabled {
-  --background: #cccccc;  /* Color gris para el botón deshabilitado */
-  --color: #666666;       /* Texto gris cuando está deshabilitado */
+  --background: #cccccc; /* Fondo gris cuando está deshabilitado */
+  --color: #666666; /* Texto gris */
 }
 
 .boton:hover {
-  --background: darken(#820000, 10%);  /* Efecto de hover para oscurecer el rojo */
+  --background: #660000; /* Fondo rojo más oscuro al pasar el cursor */
 }
+
 ion-toolbar {
-  --background: #820000; /* Barra de herramientas con el mismo color rojo */
+  --background: #820000; /* Fondo de la barra de herramientas */
 }
