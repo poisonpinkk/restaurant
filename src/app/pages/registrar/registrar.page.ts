@@ -10,78 +10,113 @@ import { User } from 'src/app/models/user.models';
   styleUrls: ['./registrar.page.scss'],
 })
 export class RegistrarPage implements OnInit {
-  // Creamos una variable de tipo User para almacenar los datos del formulario
   userData: User = {
     name: '',
     email: '',
     rol: '',
-    rut: '', // Inicialmente vacío, pero será 'cliente' o 'empresa'
+    rut: '', // Inicialmente vacío
   };
 
-  // Variables para los mensajes
   mensajeExito: string = '';
   mensajeError: string = '';
-  passwordError: string = ''; // Nuevo mensaje dinámico para la contraseña
+  passwordError: string = '';
+  rutError: string = ''; // Mensaje dinámico para el RUT
 
   password: string = '';
 
   constructor(
     private authService: AuthService,
     private firestoreService: FirestoreService,
-    private router: Router // Para la redirección
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     console.log('register');
   }
 
-  // Método que se ejecutará al escribir la contraseña
+  // Validación de la contraseña
   validatePassword() {
     if (this.password.length < 6) {
       this.passwordError = 'La contraseña debe tener al menos 6 caracteres.';
     } else {
-      this.passwordError = ''; // Elimina el error si la validación pasa
+      this.passwordError = '';
     }
   }
 
-  // Método que se ejecutará al enviar el formulario de registro
+  // Validación del RUT
+  validateRut() {
+    const rutRegex = /^[0-9]{7,8}-[0-9kK]$/;
+
+    // Verificar formato
+    if (!rutRegex.test(this.userData.rut)) {
+      this.rutError = 'Formato de RUT inválido. Ejemplo: 12345678-9';
+      return;
+    }
+
+    // Verificar dígito verificador
+    const [rutBody, dv] = this.userData.rut.split('-');
+    if (!this.verifyRutDigit(rutBody, dv)) {
+      this.rutError = 'Dígito verificador inválido.';
+      return;
+    }
+
+    // Si es válido, limpiar el mensaje de error
+    this.rutError = '';
+  }
+
+  // Función para verificar el dígito verificador del RUT
+  private verifyRutDigit(rutBody: string, dv: string): boolean {
+    let sum = 0;
+    let multiplier = 2;
+
+    // Iterar sobre los dígitos del RUT desde el final hacia el inicio
+    for (let i = rutBody.length - 1; i >= 0; i--) {
+      sum += parseInt(rutBody[i], 10) * multiplier;
+      multiplier = multiplier === 7 ? 2 : multiplier + 1;
+    }
+
+    const calculatedDv = 11 - (sum % 11);
+    const formattedDv = calculatedDv === 11 ? '0' : calculatedDv === 10 ? 'k' : calculatedDv.toString();
+
+    // Comparar el dígito verificador calculado con el ingresado
+    return formattedDv === dv.toLowerCase();
+  }
+
+  // Método para registrar al usuario
   async registerUser() {
     this.mensajeExito = '';
     this.mensajeError = '';
 
-    // Validación de contraseña antes de registrar
+    // Validar RUT antes de continuar
+    if (this.rutError || !this.userData.rut) {
+      this.mensajeError = 'Por favor, verifica el RUT ingresado.';
+      return;
+    }
+
+    // Validar contraseña
     if (this.passwordError) {
       return;
     }
 
     try {
-      // 1. Registrar el usuario en Firebase Authentication usando email y password
       const userCredential = await this.authService.register(
         this.userData.email,
         this.password
       );
 
-      // 2. Obtener el UID del usuario registrado
       const uid = userCredential.user?.uid;
 
-      // 3. Almacenar los datos adicionales en Firestore bajo el UID del usuario
       if (uid) {
         const { name, email, rol, rut } = this.userData;
 
-        // Guardar en Firestore sin la contraseña
         await this.firestoreService.createUser(uid, { name, email, rol, rut });
 
-        // 4. Mostrar mensaje de éxito
         this.mensajeExito = '¡Registro exitoso!';
-
-        // Redirigir al usuario a la página de login
         this.router.navigate(['/login']);
       }
     } catch (error) {
       console.error('Error registrando al usuario:', error);
-      // Mostrar mensaje de error
-      this.mensajeError =
-        'Hubo un error al registrar el usuario. Inténtalo nuevamente.';
+      this.mensajeError = 'Hubo un error al registrar el usuario. Inténtalo nuevamente.';
     }
   }
 }

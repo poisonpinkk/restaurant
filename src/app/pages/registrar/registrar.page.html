@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Registrate</ion-title>
+    <ion-title>Registrar</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true" class="register-content">
@@ -50,7 +50,17 @@
     </div>
 
     <div class="field">
-      <ion-input [(ngModel)]="userData.rut" name="rut" placeholder="RUT" class="input-field" required></ion-input>
+      <ion-input 
+        [(ngModel)]="userData.rut" 
+        name="rut" 
+        placeholder="RUT" 
+        class="input-field" 
+        (ionInput)="validateRut()" 
+        required>
+      </ion-input>
+      <div *ngIf="rutError" class="mensaje-error">
+        {{ rutError }}
+      </div>
     </div>
 
     <!-- Botón de Registro -->
