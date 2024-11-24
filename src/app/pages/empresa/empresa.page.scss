@@ -1,30 +1,29 @@
 ion-content {
   --padding: 16px;
+  padding-bottom: 60px; /* Espacio adicional para el footer */
 }
-ion-title{
-  color:#f0f4f8;
+
+ion-title {
+  color: #f0f4f8;
 }
-.boton{
-background-color: #b40000;
-color: #f0f4f8;
-border-radius: 12px;
-margin-top: 20px;
+
+.titulo {
+  text-align: center; /* Centra el texto */
+  font-size: 24px; /* Tamaño de la fuente */
+  font-weight: bold; /* Negrita */
+  color: #820000; /* Color del texto */
 }
-.titulo{
-text-align: center;  /* Centra el texto */
-font-size: 24px;      /* Tamaño de la fuente */
-font-weight: bold;    /* Negrita */
-color: #820000;       /* Color del texto (puedes cambiarlo) */
-}
+
 .boton {
---background: #820000; /* Fondo del botón con el color rojo */
---color: #fff3eb;      /* Color del texto en blanco */
---border-radius: 5px;  /* Bordes redondeados */
---padding-start: 16px; /* Espaciado interno desde la izquierda */
---padding-end: 16px;   /* Espaciado interno desde la derecha */
-font-size: 16px;        /* Tamaño de la fuente */
-font-weight: bold;      /* Negrita */
+  --background: #820000; /* Fondo del botón con rojo */
+  --color: #fff3eb; /* Texto en blanco */
+  --border-radius: 5px; /* Bordes redondeados */
+  --padding-start: 16px; /* Espaciado interno */
+  --padding-end: 16px;
+  font-size: 16px; /* Tamaño de la fuente */
+  font-weight: bold; /* Negrita */
 }
+
 ion-toolbar {
-  --background: #820000; /* Barra de herramientas con el mismo color rojo */
+  --background: #820000; /* Fondo de la barra de herramientas */
 }
