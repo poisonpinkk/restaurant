@@ -15,9 +15,9 @@ export class FooterComponent  implements OnInit {
 
   ngOnInit() {}
 
-  goBack() {
-    this.location.back();
-  }
+  // goBack() {
+  //   this.location.back();
+  // }
 
   async logout() {
     try {
