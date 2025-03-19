@@ -18,35 +18,35 @@ export class LoginPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.limpiarCampos(); // Limpiar campos al cargar la página
+    this.limpiarCampos(); //limpiar campos al cargar la página
   }
 
   ionViewWillEnter() {
-    this.limpiarCampos(); // Limpiar campos cada vez que se entra en la página
+    this.limpiarCampos(); //limpiar campos cada vez que se entra en la página
   }
 
-  login() {
-    this.authService
-      .login(this.email, this.password)
-      .then(() => {
-        let user = this.authService.getCurrentUser();
+  login() {//método que se llama cuando el usuario intenta iniciar sesión.
+    this.authService//llama al servicio de autenticación (authservice).
+      .login(this.email, this.password)//llama al método login del servicio de autenticación, pasando el correo y la contraseña del usuario.
+      .then(() => {//si la promesa del login se resuelve exitosamente, ejecuta este bloque de código.
+        let user = this.authService.getCurrentUser();//si el usuario existe (es decir, el login fue exitoso):
         if (user) {
-          // Redirigir según el rol del usuario
-          if (user.rol === 'cliente') {
-            this.router.navigate(['/cliente']);
-          } else if (user.rol === 'empresa') {
-            this.router.navigate(['/empresa']);
+          //redirigir según el rol del usuario
+          if (user.rol === 'cliente') {//si el rol del usuario es cliente:
+            this.router.navigate(['/cliente']); //redirige al usuario a la página de cliente.
+          } else if (user.rol === 'empresa') {//si el rol del usuario es empresa:
+            this.router.navigate(['/empresa']);//redirige al usuario a la página de empresa.
           }
         }
       })
-      .catch((error) => {
-        this.errorMessage = this.authService.GenerarError(error);
+      .catch((error) => {//si ocurre algún error durante el login, se captura y ejecuta este bloque.
+        this.errorMessage = this.authService.GenerarError(error);//llama al método generar error del servicio de autenticación para generar un mensaje de error y lo asigna a errormessage
       });
   }
 
   limpiarCampos() {
-    this.email = '';
-    this.password = '';
-    this.errorMessage = '';
+    this.email = '';//limpia el campo del email.
+    this.password = '';//limpia el campo de la contraseña.
+    this.errorMessage = '';//limpia cualquier mensaje de error que esté mostrado.
   }
 }

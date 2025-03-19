@@ -6,9 +6,9 @@
 
 <ion-content>
   <app-header></app-header>
-  <!-- Formulario para la reserva -->
+  <!-- formulario para la reserva -->
   <form [formGroup]="reservaForm" (ngSubmit)="reservar()">
-    <!-- Campo para seleccionar la fecha -->
+    <!-- campo para seleccionar la fecha -->
     <ion-item>
       <ion-label position="floating">Fecha</ion-label>
       <br><br>
@@ -19,7 +19,7 @@
       ></ion-datetime>
     </ion-item>
 
-    <!-- Campo para seleccionar la hora -->
+    <!-- campo para seleccionar la hora -->
     <ion-item>
       <ion-label>Hora</ion-label>
       <ion-select formControlName="hora">
@@ -27,13 +27,13 @@
       </ion-select>
     </ion-item>
 
-    <!-- Campo para seleccionar la cantidad de personas -->
+    <!--campo para seleccionar la cantidad de personas -->
     <ion-item>
       <ion-label position="floating">Cantidad de personas</ion-label>
       <ion-input type="number" formControlName="cantidad" min="1"></ion-input>
     </ion-item>
 
-    <!-- Botón para reservar -->
+    <!-- botón para reservar -->
     <ion-button class="boton" expand="block" type="submit" [disabled]="reservaForm.invalid">
       Reservar
     </ion-button>

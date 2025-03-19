@@ -1,5 +1,5 @@
 ion-header {
-  background-color: #820000; /* Color de fondo del encabezado */
+  background-color: #820000; /*color de fondo del encabezado*/
 }
 
 ion-title {
@@ -7,36 +7,36 @@ ion-title {
 }
 
 ion-content {
-  --background: #fff3eb; /* color cream */
-  color: #820000;        /* Texto rojo oscuro */
+  --background: #fff3eb; /*color cream*/
+  color: #820000;        /*texto rojo oscuro*/
 
   ion-label {
-    color:gray; /* Etiquetas en blanco */
+    color:gray; /*etiquetas en blanco*/
   }
 
-  /* Botón de Iniciar sesión con el rojo deseado */
+  /*botón de iniciar sesion*/
   ion-button.boton1 {
-    --background: #820000; /* Fondo del botón rojo */
-    --color: #fff3eb; /* Texto en blanco suave */
-    --border-radius: 5px; /* Opcional: para bordes redondeados */
+    --background: #820000;/*fondo del botón rojo*/
+    --color: #fff3eb;/*texto en blanco suave*/
+    --border-radius: 5px;/*para bordes redondeados*/
   }
 
-  /* Estilo para el botón secundario */
+  /*estilo para el botón secundario */
   ion-button.boton2 {
-    --background: #fff3eb; /* Fondo suave del botón secundario */
-    --color: #820000; /* Texto en rojo */
+    --background: #fff3eb;/*fondo suave del botón secundario*/
+    --color: #820000;/*texto en rojo*/
   }
 
   /* Estilo para el mensaje de error */
   .error-message {
-    color: #820000; /* Rojo oscuro para el mensaje de error */
-    font-size: 14px; /* Ajusta el tamaño del texto */
-    font-weight: bold; /* Hacer que el mensaje de error sea más destacado */
-    margin-top: 10px; /* Espaciado superior */
-    text-align: center; /* Alinea el texto al centro (opcional) */
+    color: #820000;/*rojo oscuro para el mensaje de error*/
+    font-size: 14px;/*ajusta el tamaño del texto*/
+    font-weight: bold;/*hacer que el mensaje de error sea más destacado*/
+    margin-top: 10px;/*espaciado superior*/
+    text-align: center;/*alinea el texto al centro*/
   }
 }
 
 ion-toolbar {
-  --background: #820000; /* Barra de herramientas con el mismo color rojo */
+  --background: #820000;/*barra de herramientas con el mismo color rojo*/
 }

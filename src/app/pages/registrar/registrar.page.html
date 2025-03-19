@@ -14,34 +14,34 @@
   <form (ngSubmit)="registerUser()" class="form">
     <p id="heading">Registrarse</p>
 
-    <!-- Campo de Nombre de Usuario -->
+    <!--campo de nombre usuario-->
     <div class="field">
       <ion-input [(ngModel)]="userData.name" name="name" placeholder="Nombre de Usuario" class="input-field" required></ion-input>
     </div>
 
-    <!-- Campo de Email -->
+    <!--campo de email-->
     <div class="field">
       <ion-input [(ngModel)]="userData.email" name="email" type="email" placeholder="Correo Electrónico" class="input-field" required></ion-input>
     </div>
 
-    <!-- Campo de Contraseña -->
+    <!--campo de contraseña-->
     <div class="field">
-      <ion-input 
-        [(ngModel)]="password" 
-        name="password" 
-        type="password" 
-        placeholder="Contraseña" 
-        class="input-field" 
+      <ion-input
+        [(ngModel)]="password"
+        name="password"
+        type="password"
+        placeholder="Contraseña"
+        class="input-field"
         (ionInput)="validatePassword()"
         required>
       </ion-input>
-      <!-- Mensaje de validación en tiempo real -->
+      <!--mensaje de validación en tiempo real-->
       <div *ngIf="passwordError" class="mensaje-error">
         {{ passwordError }}
       </div>
     </div>
 
-    <!-- Campo de Selección de Rol -->
+    <!--campo de selección de rol -->
     <div class="field">
       <ion-select [(ngModel)]="userData.rol" name="rol" placeholder="Selecciona tu rol" class="input-field" required>
         <ion-select-option value="cliente">Cliente</ion-select-option>
@@ -50,12 +50,12 @@
     </div>
 
     <div class="field">
-      <ion-input 
-        [(ngModel)]="userData.rut" 
-        name="rut" 
-        placeholder="RUT" 
-        class="input-field" 
-        (ionInput)="validateRut()" 
+      <ion-input
+        [(ngModel)]="userData.rut"
+        name="rut"
+        placeholder="RUT"
+        class="input-field"
+        (ionInput)="validateRut()"
         required>
       </ion-input>
       <div *ngIf="rutError" class="mensaje-error">
@@ -63,7 +63,7 @@
       </div>
     </div>
 
-    <!-- Botón de Registro -->
+    <!--boton de registro -->
     <div class="btn">
       <button type="submit" class="button2" [disabled]="passwordError">Registrarse</button>
     </div>

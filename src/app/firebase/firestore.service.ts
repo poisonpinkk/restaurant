@@ -12,29 +12,29 @@ export class FirestoreService {
 
   constructor(private firestore: Firestore) { }
 
-    // Método para crear un nuevo usuario en Firestore
+    //método para crear un nuevo usuario en firestore
     createUser(uid: string, userData: User) {
-      // 1. Obtener la referencia al documento en la colección 'users' con el UID del usuario
+      //1.obtener la referencia al documento en la colección users con el UID del usuario
       const userDocRef = doc(this.firestore, `users/${uid}`);
 
-      // 2. Usar setDoc para almacenar los datos del usuario en el documento
+      //2.usar setDoc para almacenar los datos del usuario en el documento
       return setDoc(userDocRef, userData);
     }
 
-    // Método para obtener los datos de un usuario por su UID
+    //método para obtener los datos de un usuario por su UID (id)
     async getUser(uid: string) {
       const userDocRef = doc(this.firestore, `users/${uid}`);
       const userDoc = await getDoc(userDocRef);
       return userDoc.exists() ? userDoc.data() : null;
     }
 
-    // Crear una nueva reserva
+    //crear una nueva reserva
   async createReservation(reservation: Reservation) {
     const reservationsCollectionRef = collection(this.firestore, 'reservas');
     return addDoc(reservationsCollectionRef, reservation);
   }
 
-  // Obtener reservas de un usuario por su UID
+  //obtiene reservas de un usuario por su UID (id)
   async getReservationsByUser(uid: string) {
     const reservationsCollectionRef = collection(this.firestore, 'reservas');
     const q = query(reservationsCollectionRef, where('uid', '==', uid));

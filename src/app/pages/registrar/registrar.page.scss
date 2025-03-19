@@ -1,4 +1,4 @@
-/* Asegúrate de que el contenedor ocupe toda la pantalla */
+
 ion-content {
  --background: #fff3eb;
 }
@@ -7,7 +7,7 @@ ion-title{
   color:#f0f4f8;
 }
 ion-toolbar {
-  --background: #820000; /* Barra de herramientas con el mismo color rojo */
+  --background: #820000; /*barra de herramientas con el mismo color rojo*/
 }
 .form-container {
   display: flex;
@@ -17,7 +17,7 @@ ion-toolbar {
 
 }
 
-/* Mantén el estilo del formulario tal como lo tienes */
+
 .form {
   max-width: 320px;
   width: 100%;
@@ -110,8 +110,8 @@ ion-toolbar {
   margin-top: 10px;
 }
 .titulo{
-  text-align: center;  /* Centra el texto */
-  font-size: 24px;      /* Tamaño de la fuente */
-  font-weight: bold;    /* Negrita */
-  color: #820000;       /* Color del texto (puedes cambiarlo) */
+  text-align: center;  /*centra el texto*/
+  font-size: 24px;      /*tamaño de la fuente*/
+  font-weight: bold;    /*negrita*/
+  color: #820000;       /*color del texto*/
 }

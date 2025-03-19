@@ -1,6 +1,6 @@
 ion-content {
   --padding: 16px;
-  padding-bottom: 60px; /* Espacio adicional para el footer */
+  padding-bottom: 60px; /*espacio adicional para el footer */
 }
 
 ion-title {
@@ -8,22 +8,22 @@ ion-title {
 }
 
 .titulo {
-  text-align: center; /* Centra el texto */
-  font-size: 24px; /* Tamaño de la fuente */
-  font-weight: bold; /* Negrita */
-  color: #820000; /* Color del texto */
+  text-align: center; /*centra el texto */
+  font-size: 24px; /*tamaño de la fuente */
+  font-weight: bold; /*negrita */
+  color: #820000; /*color del texto */
 }
 
 .boton {
-  --background: #820000; /* Fondo del botón con rojo */
-  --color: #fff3eb; /* Texto en blanco */
-  --border-radius: 5px; /* Bordes redondeados */
-  --padding-start: 16px; /* Espaciado interno */
+  --background: #820000; /*fondo del botón con rojo */
+  --color: #fff3eb; /*texto en blanco */
+  --border-radius: 5px; /*bordes redondeados */
+  --padding-start: 16px; /*espaciado interno */
   --padding-end: 16px;
-  font-size: 16px; /* Tamaño de la fuente */
-  font-weight: bold; /* Negrita */
+  font-size: 16px; /*tamaño de la fuente */
+  font-weight: bold; /*negrita */
 }
 
 ion-toolbar {
-  --background: #820000; /* Fondo de la barra de herramientas */
+  --background: #820000; /*fondo de la barra de herramientas */
 }
